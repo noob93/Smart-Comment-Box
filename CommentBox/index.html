@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AngularUI | ui-mention Example</title>
+  <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="CSS/BScss.css">
+    
+  <script src="LIB/angular.js"></script>
+  <!--<script src="../bower_components/angular/angular.min.js"></script>-->
+  <script src="LIB/example.js"></script>
+  <script src="LIB/mention.js"></script> 
+
+    
+</head>
+<body ng-app="example">
+    
+
+     
+                  
+            
+            <div ng-controller="testLogic" class="mention-container">
+                <!- DIV TAG TO TAG USERS-->  
+                <textarea ui-mention mention-example
+                          ng-model="post.message"
+                          placeholder="Use @mention and Add Comment..."
+                          ng-trim="false"
+                          id = "commentTextarea">
+                </textarea>
+
+                <!- DIV TAG TO SEE DROPDOWN-->  
+                <ul ng-if="$mention.choices.length" class="dropdown">
+                    <li ng-repeat="choice in $mention.choices" ng-class="{active:$mention.activeChoice==choice}">
+                        <a ng-click="$mention.select(choice)">
+                        {{::choice.first}} {{::choice.last}}
+                        </a>
+                    </li>
+                </ul>
+                <br/>
+                <button id = "postButtonId" class = "btn btn-default" ng-click="btn_add()" style='margin-top:10px;'>Post Comment</button>
+                <br><br>
+                <!- DIV TAG TO SELECT DISPLAY COMMENT-->  
+                <h5 class = "adjustButton">Comments :</h5>
+                <ul>
+                    <li class = "adjustButton" 
+                        ng-repeat="comnt in comment"> {{ comnt }} <a  style="float: right;" href="" ng-click="remItem($index)">x</a>                       </li>
+                </ul>
+                
+            </div>
+       
+ 
+</body>
+</html>
+
+
